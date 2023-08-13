@@ -1,0 +1,8 @@
+{
+  "name": "Url shorter - API",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
