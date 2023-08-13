@@ -1,7 +1,8 @@
 import { Storage } from './data/Storage.js'
 
 export const cutURL = (req, res) => {
-  const urlRegex = /^(https?:\/\/)?[\d\w]+\.[\w]+(\/.*)*/
+  const urlRegex =
+    /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
   const urlToShort = req.body.url
 
@@ -20,9 +21,15 @@ export const cutURL = (req, res) => {
 }
 
 function generateRandomCode() {
-  return 'xxxxx'.replace(/x/g, () =>
-    Math.floor(Math.random() * 16).toString(16)
-  )
+  let result = ''
+  const characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = 5
+  let counter = 0
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    counter += 1
+  }
+  return result
 }
 
 function saveCodeAndUrl(url, code) {
