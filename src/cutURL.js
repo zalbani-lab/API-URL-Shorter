@@ -3,22 +3,32 @@ import { Storage } from './data/Storage.js'
 export const cutURL = (req, res) => {
   const urlRegex = /^(https?:\/\/)?[\d\w]+\.[\w]+(\/.*)*/
 
-  if (req.body.url === undefined || !urlRegex.test(req.body.url))
+  const urlToShort = req.body.url
+
+  if (urlToShort === undefined || !urlRegex.test(urlToShort))
     return res.status(400).send('Bad request')
 
-  const code = 'xxxxx'.replace(/x/g, () =>
-    Math.floor(Math.random() * 16).toString(16)
-  )
+  const code = generateRandomCode()
 
-  console.log('Generated code : '.code)
+  console.log('Generated code : ' + code)
 
-  Storage.data.links.push({
-    url: req.body.url,
-    code: code,
-  })
-  Storage.write()
+  saveCodeAndUrl(urlToShort, code)
 
   res.status(200).send({
     code: code,
   })
+}
+
+function generateRandomCode() {
+  return 'xxxxx'.replace(/x/g, () =>
+    Math.floor(Math.random() * 16).toString(16)
+  )
+}
+
+function saveCodeAndUrl(url, code) {
+  Storage.data.links.push({
+    url,
+    code,
+  })
+  Storage.write()
 }

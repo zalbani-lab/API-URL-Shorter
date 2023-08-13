@@ -1,7 +1,6 @@
 import express from 'express'
 
 import { Storage } from './src/data/Storage.js'
-
 import { cutURL } from './src/cutURL.js'
 
 const app = express()
