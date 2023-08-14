@@ -1,11 +1,12 @@
 import express from 'express'
+import 'dotenv/config'
 
 import { Storage } from './src/data/Storage.js'
 import { cutURL } from './src/cutURL.js'
 import { redirect } from './src/redirect.js'
 
 const app = express()
-const port = 8080
+const port = process.env.PORT || 8080
 
 app.use(express.json())
 
