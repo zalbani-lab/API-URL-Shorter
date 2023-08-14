@@ -48,7 +48,7 @@ $ npm install
 server with hot reload at [localhost:3000](http://localhost:3000)
 
 ```sh
-$ npm dev
+$ npm run dev
 ```
 
 <!--
