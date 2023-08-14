@@ -2,6 +2,16 @@
   "name": "Url shorter - API",
   "version": "0.0.0",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zalbani-lab/API-URL-Shorter.git"
+  },
+  "author": "Zalbani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zalbani-lab/API-URL-Shorter/issues"
+  },
+  "homepage": "https://github.com/zalbani-lab/API-URL-Shorter#readme",
   "type": "module",
   "scripts": {
     "dev": "nodemon app.js"
