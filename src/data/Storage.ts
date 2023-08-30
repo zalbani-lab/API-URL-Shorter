@@ -1,14 +1,7 @@
 import fs from 'fs'
 
 export const Storage = {
-  data: fs.existsSync('storage.json')
-    ? JSON.parse(fs.readFileSync('storage.json', 'utf8'))
-    : JSON.parse(
-        fs.readFileSync(
-          fs.appendFileSync('storage.json', '{ links: [] }'),
-          'utf-8'
-        )
-      ),
+  data: JSON.parse(fs.readFileSync('storage.json', 'utf8')),
 
   write: () =>
     fs.existsSync('storage.json')

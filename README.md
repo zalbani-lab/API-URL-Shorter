@@ -29,6 +29,8 @@ An API to short url simple as that
 
 ### ⛏️ Built With
 
+- [NodeJs](https://nodejs.org/) - Node.js is a cross-platform, open-source server environment. Node.js is a back-end JavaScript runtime environment, runs and executes JavaScript code outside a web browser.
+- [Typescript](https://www.typescriptlang.org/) - TypeScript is a free and open-source high-level programming language developed by Microsoft that adds static typing with optional type annotations to JavaScript.
 - [Express](https://expressjs.com/) - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>

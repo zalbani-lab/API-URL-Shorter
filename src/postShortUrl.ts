@@ -1,6 +1,8 @@
+import { Request, Response } from 'express'
 import { Storage } from './data/Storage.js'
+import { Link } from './types/Link.js'
 
-export const shortURL = (req, res) => {
+export const shortURL = (req: Request, res: Response) => {
   const urlRegex =
     /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
@@ -9,11 +11,11 @@ export const shortURL = (req, res) => {
   if (urlToShort === undefined || !urlRegex.test(urlToShort))
     return res.status(400).send('Bad request')
 
-  const alreadyExistingRecord = Storage.data.links.find(
-    (record) => record.url === urlToShort
+  const alreadyExistingLink = Storage.data.links.find(
+    (link: Link) => link.url === urlToShort
   )
-  if (alreadyExistingRecord !== undefined)
-    successResponse(res, alreadyExistingRecord.code)
+  if (alreadyExistingLink !== undefined)
+    successResponse(res, alreadyExistingLink.code)
 
   const code = generateCode()
 
@@ -24,14 +26,14 @@ export const shortURL = (req, res) => {
   successResponse(res, code)
 }
 
-function successResponse(res, code) {
+function successResponse(res: Response, code: string): void {
   res.status(200).send({
     code: code,
   })
 }
 
-function generateCode() {
-  let code
+function generateCode(): string {
+  let code: string
   do {
     code = generateRandomString(5)
   } while (isCodeAlreadyExist(code))
@@ -39,12 +41,12 @@ function generateCode() {
   return code
 }
 
-function isCodeAlreadyExist(code) {
-  const record = Storage.data.links.find((record) => record.code === code)
-  return record !== undefined
+function isCodeAlreadyExist(code: string): boolean {
+  const link = Storage.data.links.find((link: Link) => link.code === code)
+  return link !== undefined
 }
 
-function generateRandomString(codeLength) {
+function generateRandomString(codeLength: number): string {
   let result = ''
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
   let counter = 0
@@ -57,10 +59,12 @@ function generateRandomString(codeLength) {
   return result
 }
 
-function saveCodeAndUrl(url, code) {
-  Storage.data.links.push({
+function saveCodeAndUrl(url: string, code: string): void {
+  const link: Link = {
     url,
     code,
-  })
+  }
+
+  Storage.data.links.push(link)
   Storage.write()
 }

@@ -1,9 +1,9 @@
 import express from 'express'
 import 'dotenv/config'
 
-import { Storage } from './src/data/Storage.js'
-import { shortURL } from './src/postShortUrl.js'
-import { redirect } from './src/getShortUrl.js'
+import { Storage } from './data/Storage.js'
+import { shortURL } from './postShortUrl.js'
+import { redirect } from './getShortUrl.js'
 
 const app = express()
 const port = process.env.PORT || 3000
