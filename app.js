@@ -2,8 +2,8 @@ import express from 'express'
 import 'dotenv/config'
 
 import { Storage } from './src/data/Storage.js'
-import { cutURL } from './src/cutURL.js'
-import { redirect } from './src/redirect.js'
+import { shortURL } from './src/postShortUrl.js'
+import { redirect } from './src/getShortUrl.js'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -15,7 +15,7 @@ if (Storage.data.links === undefined) {
   Storage.write()
 }
 
-app.post('/cut', cutURL)
+app.post('/', shortURL)
 app.get('/:code([a-z0-9]{5})', redirect)
 
 app.listen(port, () => {
